@@ -58,3 +58,24 @@ return 1;
 return 0;
 
 }
+
+int  dispatcher(i)
+{
+  enqueue(i);
+}
+
+void sortByArrival()
+{
+struct process temp;
+int i,j;
+for(i=0;i<n-1;i++)
+for(j=i+1;j<n;j++)
+{
+if(p[i].at>p[j].at)
+{
+temp=p[i];
+p[i]=p[j];
+p[j]=temp;
+}
+}
+}
