@@ -31,3 +31,30 @@ if(front==-1)
 front=0;
 }
 }
+int dequeue()   
+{
+if(front==-1)
+{
+printf("underflow");
+exit(0);
+}                                              //removing from queue
+int temp=q[front];
+if(front==rear)
+front=rear=-1;
+else
+{
+front++;
+}
+return temp;
+}
+
+int isInQueue(int i)
+{int k;
+for(k=front;k<=rear;k++)
+{
+if(q[k]==i)
+return 1;
+}
+return 0;
+
+}
