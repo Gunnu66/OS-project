@@ -119,5 +119,55 @@ printf("\n%c\t\t%d\t\t%d\t\t%d\t\t%d",p[i].name,p[i].at,p[i].bt,p[i].wt,p[i].tt)
 printf("\nAverage waiting time:%f",avgwt/n);
 printf("\nAverage Turnaround time:%f",avgtt/n);
 }
+int main()
+{
 
+
+
+input();
+sortByArrival();
+dispatcher(0);          // dispatcher the first process
+printf("\t\t\nProcess execution order: ");
+
+for(time=p[0].at;time<sum_bt;) // run until the total burst time reached
+{   i=dequeue();
+
+if(p[i].rt<=tq)
+{                          /* for processes having remaining time with less than or  equal  to time quantum  */
+                       
+time+=p[i].rt;
+p[i].rt=0;
+p[i].completed=1;          
+    printf(" %c ",p[i].name);
+            p[i].wt=time - p[i].at-p[i].bt;
+           // p[i].tt=time - p[i].at;       
+            for(j=0;j<n;j++)                /*dispatcher the processes which have come                                         while scheduling */
+            {
+            if(p[j].at<=time && p[j].completed!=1&& isInQueue(j)!=1)
+            {
+            dispatcher(j);
+            
+            }
+           }
+        }
+    else               // more than time quantum
+    {
+    time += tq;
+    p[i].rt -= tq;
+    printf(" %c ",p[i].name);
+    for(j=0;j<n;j++)    //first dispatcher the processes which have come while scheduling 
+            {
+            if(p[j].at<=time && p[j].completed!=1&&i!=j&& isInQueue(j)!=1)
+             {
+            dispatcher(j);
+            
+            }
+           }
+           dispatcher(i);   // then dispatcher the uncompleted process
+           
+    }  
+}
+display();
+return 0;
+}
 
