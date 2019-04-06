@@ -79,3 +79,45 @@ p[j]=temp;
 }
 }
 }
+
+void input()
+{
+	 printf("\n\nEnter no of processes:");
+ scanf("%d",&n);
+ for(i=0,c='A';i<n;i++,c++)
+ {
+ p[i].name=c;
+ printf("\n\t------------   PROCESS %c   --------------: ",p[i].name);
+ printf("\n\nEnter Arrival Time:");
+ scanf("%d",&p[i].at);
+ printf("\nEnter Burst Time:");
+ scanf("%d",&p[i].bt);
+ p[i].rt=p[i].bt;
+ p[i].completed=0;
+ sum_bt+=p[i].bt;
+ 
+}
+
+printf("\nEnter TIME QUANTUM:");
+scanf("%d",&tq);
+}
+
+
+void display()
+{
+	
+printf("\n\nPROCESS\t    ARRIVAL TIME\tBURST TIME\tWAITING TIME\tTURNAROUND TIME");
+for(i=0;i<n;i++)
+{
+p[i].tt=p[i].bt+p[i].wt;
+
+
+avgwt+=p[i].wt;
+ avgtt+=p[i].tt;
+printf("\n%c\t\t%d\t\t%d\t\t%d\t\t%d",p[i].name,p[i].at,p[i].bt,p[i].wt,p[i].tt);
+}
+printf("\nAverage waiting time:%f",avgwt/n);
+printf("\nAverage Turnaround time:%f",avgtt/n);
+}
+
+
