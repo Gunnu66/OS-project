@@ -1,5 +1,4 @@
 #include<stdio.h>
-#include<conio.h>
 #include<stdlib.h>
 struct process
 {
@@ -59,7 +58,7 @@ return 0;
 
 }
 
-int  dispatcher(i)
+int  dispatcher(int i)
 {
   enqueue(i);
 }
